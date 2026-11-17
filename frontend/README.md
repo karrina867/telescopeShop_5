@@ -95,7 +95,8 @@ export const isDemoMode = import.meta.env.PROD && !import.meta.env.VITE_API_URL
 авторизации, админки и импорта в демо-режиме возвращают 503, а `/login`
 показывает предупреждение. В `npm.cmd run dev` адаптер не подключается.
 
-Для SPA-маршрутов в `public/_redirects` лежит правило `/* /index.html 200`.
+Для SPA-маршрутов ничего настраивать не нужно: Pages с пресетом Vite сам отдаёт
+`index.html` на внутренние адреса, поэтому прямой заход на `/catalog` работает.
 Настройки Cloudflare Pages: root `frontend`, build `npm run build`, output `dist`,
 `NODE_VERSION=22`. Подробности и сравнение хостингов — в
 [`../docs/HOSTING_REPORT.md`](../docs/HOSTING_REPORT.md).
