@@ -102,3 +102,30 @@ npm.cmd run build
 ```
 
 Готовые файлы появятся в `frontend/dist`.
+
+## Публикация
+
+Сайт опубликован на **Cloudflare Pages** (Free). Настройки сборки в дашборде:
+
+| Параметр | Значение |
+| --- | --- |
+| Root directory | `frontend` |
+| Build command | `npm run build` |
+| Build output directory | `dist` |
+| Переменная окружения | `NODE_VERSION=22` |
+
+Production-сборка без переменной `VITE_API_URL` работает автономно: `src/api/http.js`
+подключает демо-адаптер (`src/api/demo.js`, `src/data/demoCatalog.js`) вместо Laravel.
+Каталог, фильтры, подбор, корзина и оформление заказа остаются рабочими, заказы
+хранятся в `localStorage`. В dev-режиме (`npm.cmd run dev`) запросы по-прежнему идут
+в реальный API, поэтому локальная версия с Laravel и админкой не меняется.
+
+Файл `frontend/public/_redirects` (`/* /index.html 200`) включает SPA-fallback,
+чтобы прямые ссылки вида `/catalog` открывались на статическом хостинге.
+
+Рекламные плейсхолдеры — компонент `frontend/src/components/AdSlot.vue`: баннер
+на главной под популярными товарами и блок в сайдбаре каталога (на десктопе).
+
+Сравнение хостингов, риски политик и обоснование выбора — в
+[`docs/HOSTING_REPORT.md`](docs/HOSTING_REPORT.md). Скриншоты блоков —
+в `docs/screenshots/`.

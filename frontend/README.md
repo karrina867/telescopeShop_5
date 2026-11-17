@@ -81,6 +81,25 @@ CSS разделён на два файла:
 в колонке «Новые» с пометкой «С сайта». Перемещение карточек между колонками
 тоже сохраняется в браузере; демо-заказы показываются при первом открытии.
 
+## Демо-режим и статическая публикация
+
+`src/api/http.js` выбирает демо-адаптер (`src/api/demo.js` + `src/data/demoCatalog.js`),
+когда сборка production и не задан `VITE_API_URL`:
+
+```js
+export const isDemoMode = import.meta.env.PROD && !import.meta.env.VITE_API_URL
+```
+
+Так сайт на Cloudflare Pages работает без Laravel: каталог, фильтры, подбор,
+корзина и оформление заказа используют демо-данные и `localStorage`. Запросы
+авторизации, админки и импорта в демо-режиме возвращают 503, а `/login`
+показывает предупреждение. В `npm.cmd run dev` адаптер не подключается.
+
+Для SPA-маршрутов в `public/_redirects` лежит правило `/* /index.html 200`.
+Настройки Cloudflare Pages: root `frontend`, build `npm run build`, output `dist`,
+`NODE_VERSION=22`. Подробности и сравнение хостингов — в
+[`../docs/HOSTING_REPORT.md`](../docs/HOSTING_REPORT.md).
+
 ## Админ-раздел
 
 Маршруты `/admin*` защищены метаданными `requiresAuth` в `src/router/index.js`
