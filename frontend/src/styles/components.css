@@ -1,0 +1,269 @@
+/* ------------------------------------------------------------------
+   Компонентный слой проекта.
+   Повторяющиеся наборы утилит вынесены в @apply, чтобы разметка
+   страниц оставалась короткой и без дублирования.
+------------------------------------------------------------------- */
+@layer components {
+  /* ---------- Каркас страницы ---------- */
+  .page-shell {
+    @apply mx-auto max-w-page px-4 py-section sm:px-6 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply mb-2 block text-xs font-bold uppercase tracking-widest text-brand;
+  }
+
+  .page-title {
+    @apply text-3xl font-extrabold tracking-tight text-white sm:text-4xl;
+  }
+
+  .page-lead {
+    @apply mt-2 max-w-3xl text-sm leading-relaxed text-gray-400 sm:text-base;
+  }
+
+  .panel {
+    @apply rounded-panel border border-white/10 bg-space-800/65 p-5 shadow-xl backdrop-blur-md transition-colors duration-300 sm:p-6;
+  }
+
+  .card-hover {
+    @apply rounded-card border border-white/10 bg-space-800/70 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-glow;
+  }
+
+  .muted {
+    @apply text-sm leading-relaxed text-gray-400;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-gray-300;
+  }
+
+  .code-inline {
+    @apply rounded-md bg-space-950/80 px-2 py-0.5 font-mono text-[11px] text-brand;
+  }
+
+  /* ---------- Кнопки дизайн-системы ---------- */
+  .btn,
+  .btn-primary,
+  .btn-secondary,
+  .btn-ghost,
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-space-950 disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply bg-brand text-space-950 hover:-translate-y-0.5 hover:bg-brand-hover hover:shadow-glow-sm active:translate-y-0 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply border border-white/15 bg-white/5 text-white hover:border-brand/40 hover:bg-white/10 hover:text-brand;
+  }
+
+  .btn-ghost {
+    @apply text-gray-300 hover:bg-white/5 hover:text-brand;
+  }
+
+  .btn-danger {
+    @apply bg-red-500 text-slate-50 hover:bg-red-600 active:scale-95;
+  }
+
+  .btn-sm {
+    @apply px-3.5 py-1.5 text-xs;
+  }
+
+  .btn-lg {
+    @apply px-7 py-3.5 text-base;
+  }
+
+  /* ---------- Поля формы ---------- */
+  .field-label {
+    @apply mb-1.5 block text-xs font-medium text-gray-400;
+  }
+
+  .field-input {
+    @apply w-full rounded-xl border border-white/15 bg-space-950/80 px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20;
+  }
+
+  .field-error {
+    @apply mt-1 text-xs font-medium text-red-400;
+  }
+
+  /* ---------- Мессенджер ---------- */
+  .chat-bubble,
+  .chat-bubble-in,
+  .chat-bubble-out {
+    @apply max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed shadow-sm sm:max-w-[75%];
+  }
+
+  .chat-bubble-in {
+    @apply self-start rounded-bl-md border border-white/10 bg-white/5 text-gray-200;
+  }
+
+  .chat-bubble-out {
+    @apply self-end rounded-br-md bg-brand text-space-950;
+  }
+
+  .chat-composer {
+    @apply sticky bottom-0 z-10 flex items-center gap-2 border-t border-white/10 bg-space-900/95 p-3 backdrop-blur;
+  }
+
+  /* ---------- Kanban ---------- */
+  .kanban-column {
+    @apply flex w-[85vw] min-w-[280px] max-w-sm shrink-0 snap-start flex-col rounded-panel border border-white/10 bg-space-900/60 p-3 sm:w-[320px] lg:w-auto lg:max-w-none;
+  }
+
+  .kanban-card {
+    @apply cursor-grab rounded-card border border-white/10 bg-space-800/80 p-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-glow-sm active:cursor-grabbing;
+  }
+
+  /* ---------- Лендинг ---------- */
+  .landing-eyebrow {
+    @apply mb-2 block text-[11px] font-bold uppercase tracking-widest text-brand;
+  }
+
+  .landing-title {
+    @apply text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl;
+  }
+
+  .landing-section {
+    @apply border-t border-white/5 px-4 py-10 sm:px-6 lg:px-10;
+  }
+
+  .landing-feature {
+    @apply rounded-card border border-white/10 bg-white/5 p-4 transition-colors duration-200 hover:border-brand/30 hover:bg-white/10;
+  }
+
+  .testimonial-card {
+    @apply w-[85%] shrink-0 snap-center rounded-panel border border-white/10 bg-space-800/80 p-5 sm:w-[46%] lg:w-[32%];
+  }
+
+  .faq-item {
+    @apply overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-colors duration-200 hover:border-brand/25;
+  }
+
+  .faq-summary {
+    @apply flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand;
+  }
+
+  /* ---------- Аналитика ---------- */
+  .stat-card {
+    @apply relative overflow-hidden rounded-card border border-white/10 bg-space-800/70 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-glow;
+  }
+
+  .chart-cell {
+    @apply rounded-[3px] bg-white/5 transition-colors duration-300;
+  }
+
+  .data-table {
+    @apply w-full min-w-[640px] text-left text-xs;
+  }
+
+  .data-table th {
+    @apply whitespace-nowrap px-3 py-2 text-[11px] font-semibold uppercase tracking-wider text-gray-500;
+  }
+
+  .data-table td {
+    @apply px-3 py-3 align-middle text-gray-300;
+  }
+
+  /* ---------- Степпер ---------- */
+  .step-dot {
+    @apply grid h-8 w-8 shrink-0 place-items-center rounded-full border text-xs font-bold transition-colors duration-300;
+  }
+
+  /* ---------- Дизайн-система ---------- */
+  .ds-h1 {
+    @apply text-3xl font-extrabold tracking-tight text-white sm:text-4xl;
+  }
+
+  .ds-h2 {
+    @apply text-xl font-bold tracking-tight text-white sm:text-2xl;
+  }
+
+  .ds-body {
+    @apply text-sm leading-relaxed text-gray-300;
+  }
+
+  .ds-caption {
+    @apply text-xs text-gray-500;
+  }
+
+  .ds-badge,
+  .ds-badge-info,
+  .ds-badge-success,
+  .ds-badge-warning,
+  .ds-badge-danger {
+    @apply inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-[11px] font-semibold;
+  }
+
+  .ds-badge-info {
+    @apply border-info/30 bg-info/10 text-info;
+  }
+
+  .ds-badge-success {
+    @apply border-success/30 bg-success/10 text-success;
+  }
+
+  .ds-badge-warning {
+    @apply border-warning/30 bg-warning/10 text-warning;
+  }
+
+  .ds-badge-danger {
+    @apply border-danger/30 bg-danger/10 text-danger;
+  }
+
+  .ds-alert,
+  .ds-alert-info,
+  .ds-alert-success,
+  .ds-alert-warning,
+  .ds-alert-danger {
+    @apply flex items-start gap-3 rounded-xl border px-4 py-3 text-sm;
+  }
+
+  .ds-alert-info {
+    @apply border-info/30 bg-info/10 text-gray-200;
+  }
+
+  .ds-alert-success {
+    @apply border-success/30 bg-success/10 text-gray-200;
+  }
+
+  .ds-alert-warning {
+    @apply border-warning/30 bg-warning/10 text-gray-200;
+  }
+
+  .ds-alert-danger {
+    @apply border-danger/30 bg-danger/10 text-gray-200;
+  }
+
+  .ds-card {
+    @apply rounded-card border border-white/10 bg-space-800/70 p-5 transition-all duration-300 hover:border-brand/30 hover:shadow-glow-sm;
+  }
+
+  .ds-modal {
+    @apply w-full max-w-md rounded-panel border border-white/10 bg-space-900 p-6 shadow-2xl;
+  }
+
+  /* ---------- Каталог ---------- */
+  .skeleton {
+    @apply animate-pulse rounded-lg bg-white/10;
+  }
+
+  .range-input {
+    @apply h-1.5 w-full cursor-pointer appearance-none rounded-full bg-white/10 accent-brand;
+  }
+}
+
+/* Тонкий скроллбар для дашбордов и чата. */
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-space-700) transparent;
+}
+
+/* Скрыть скроллбар у горизонтальных каруселей. */
+@utility scrollbar-none {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

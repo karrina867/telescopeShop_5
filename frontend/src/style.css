@@ -1,0 +1,195 @@
+@import 'tailwindcss';
+@import './styles/components.css';
+
+/* Тема переключается классом .dark / .light на <html>. */
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant light (&:where(.light, .light *));
+
+/* ------------------------------------------------------------------
+   Дизайн-система проекта.
+   Все цвета, шрифты, радиусы, тени, контейнер и вертикальные отступы
+   описаны токенами Tailwind (@theme). В разметке используются только
+   готовые утилиты: bg-space-950, text-brand, rounded-panel и т.д.
+------------------------------------------------------------------- */
+@theme {
+  --color-space-950: #030712;
+  --color-space-900: #070b19;
+  --color-space-850: #0b1124;
+  --color-space-800: #111827;
+  --color-space-700: #1e293b;
+
+  --color-brand: #5ce1e6;
+  --color-brand-hover: #38bdf8;
+  --color-brand-dark: #0284c7;
+
+  /* Семантические цвета дизайн-системы (задание 4.4). */
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-danger: #f87171;
+  --color-info: #38bdf8;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Untitled1', 'Inter', sans-serif;
+
+  --radius-card: 1rem;
+  --radius-panel: 1.5rem;
+
+  --shadow-glow: 0 12px 30px -10px rgb(92 225 230 / 0.15);
+  --shadow-glow-sm: 0 0 20px rgb(92 225 230 / 0.4);
+
+  --container-page: 90rem;
+  --spacing-section: 5rem;
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-in: fade-in 0.5s ease-out both;
+  --animate-float-slow: float 7s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-14px) scale(1.04);
+    }
+  }
+}
+
+/* Светлая тема: те же утилиты, но токены меняют значения.
+   Это позволяет не дублировать dark:-классы в каждом компоненте. */
+html.light {
+  color-scheme: light;
+
+  --color-space-950: #f8fafc;
+  --color-space-900: #f1f5f9;
+  --color-space-850: #e2e8f0;
+  --color-space-800: #ffffff;
+  --color-space-700: #cbd5e1;
+
+  --color-white: #0f172a;
+  --color-gray-100: #0f172a;
+  --color-gray-200: #1e293b;
+  --color-gray-300: #334155;
+  --color-gray-400: #475569;
+  --color-gray-500: #64748b;
+
+  --color-brand: #0e7490;
+  --color-brand-hover: #155e75;
+  --color-brand-dark: #67e8f9;
+
+  --color-cyan-100: #164e63;
+  --color-cyan-800: #a5f3fc;
+  --color-indigo-800: #c7d2fe;
+  --color-slate-700: #e2e8f0;
+
+  --color-red-300: #b91c1c;
+  --color-red-400: #dc2626;
+  --color-emerald-300: #047857;
+  --color-emerald-400: #059669;
+  --color-amber-400: #b45309;
+
+  --color-success: #047857;
+  --color-warning: #b45309;
+  --color-danger: #b91c1c;
+  --color-info: #0369a1;
+
+  --shadow-glow: 0 12px 30px -10px rgb(14 116 144 / 0.18);
+  --shadow-glow-sm: 0 0 20px rgb(14 116 144 / 0.25);
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+
+/* Символ валюты — буква «A» из кастомного шрифта Untitled1.
+   Файл весит 1,5 КБ, поэтому шрифт продублирован data-URI: символ
+   не зависит от кэша и сетевых ошибок, а font-display: block не
+   показывает запасную букву «A», пока шрифт не загружен. */
+@font-face {
+  font-family: 'Untitled1';
+  src:
+    url('/fonts/Untitled1.ttf?v=3') format('truetype'),
+    url('data:font/ttf;base64,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') format('truetype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: block;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-space-950 font-sans text-gray-100 antialiased;
+    overflow-x: hidden;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  html.light .stars-bg {
+    background-image: radial-gradient(1px 1px at 20px 30px, rgb(14 116 144 / 0.18), transparent);
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-space-950);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-space-700);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-brand);
+  }
+
+  /* Уважаем системную настройку «меньше движения». */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Звёздное небо — декоративный фон, который не выражается стандартными утилитами. */
+@utility stars-bg {
+  background-image:
+    radial-gradient(1.5px 1.5px at 20px 30px, rgb(255 255 255 / 0.8), rgb(0 0 0 / 0)),
+    radial-gradient(1px 1px at 40px 70px, rgb(255 255 255 / 0.5), rgb(0 0 0 / 0)),
+    radial-gradient(2px 2px at 90px 40px, rgb(255 255 255 / 0.9), rgb(0 0 0 / 0)),
+    radial-gradient(1px 1px at 160px 120px, rgb(255 255 255 / 0.6), rgb(0 0 0 / 0));
+  background-repeat: repeat;
+  background-size: 250px 250px;
+}

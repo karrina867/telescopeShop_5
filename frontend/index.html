@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      ;(() => {
+        try {
+          const saved = localStorage.getItem('orbita-theme')
+          const theme = saved === 'light' || saved === 'dark' ? saved : 'dark'
+          document.documentElement.classList.toggle('dark', theme === 'dark')
+          document.documentElement.classList.toggle('light', theme === 'light')
+        } catch (error) {
+          document.documentElement.classList.add('dark')
+        }
+      })()
+    </script>
+    <link rel="preload" href="/fonts/Untitled1.ttf?v=3" as="font" type="font/ttf" crossorigin />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Орбита — телескопы, оптика и поддержка для тех, кто хочет увидеть космос своими глазами."
+    />
+    <title>Орбита — Ваш первый телескоп</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-space-950 font-sans text-gray-100 antialiased">
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
