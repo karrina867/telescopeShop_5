@@ -1,6 +1,7 @@
 <script setup>
 import { computed, onMounted, reactive, ref, watch } from 'vue'
 import http from '@/api/http'
+import AdSlot from '@/components/AdSlot.vue'
 import ProductCard from '@/components/ProductCard.vue'
 import { formatAmount } from '@/utils/format'
 
@@ -351,6 +352,11 @@ onMounted(async () => {
           <button type="button" class="btn-secondary btn-sm w-full" :disabled="!hasFilters" @click="resetFilters">
             Сбросить фильтры
           </button>
+        </div>
+
+        <!-- Рекламный плейсхолдер в боковой колонке каталога -->
+        <div class="mt-6 hidden lg:block">
+          <AdSlot size="sidebar" />
         </div>
       </aside>
 

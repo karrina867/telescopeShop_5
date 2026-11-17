@@ -1,6 +1,7 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { isDemoMode } from '@/api/demo'
 import { useAuthStore } from '@/stores/auth'
 
 const auth = useAuthStore()
@@ -45,6 +46,14 @@ async function submit() {
         <p class="mb-6 mt-1 text-sm text-gray-400">
           Войдите, чтобы управлять товарами и импортом.
         </p>
+
+        <div
+          v-if="isDemoMode"
+          class="mb-5 rounded-xl border border-brand/30 bg-brand/10 px-4 py-3 text-sm text-brand"
+        >
+          Демо-публикация: каталог и корзина работают на демо-данных, а вход в админ-панель
+          доступен только в локальной версии с Laravel.
+        </div>
 
         <div
           v-if="message"

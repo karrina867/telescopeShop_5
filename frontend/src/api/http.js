@@ -1,10 +1,16 @@
 import axios from 'axios'
+import { demoAdapter, isDemoMode } from './demo'
 
 const http = axios.create({
-  baseURL: '/api/v1',
+  // Адрес API можно переопределить на этапе сборки (например, для отдельного backend).
+  // Без переменной используется относительный путь и прокси Vite / SPA-fallback.
+  baseURL: import.meta.env.VITE_API_URL || '/api/v1',
   headers: {
     Accept: 'application/json',
   },
+  // На статическом хостинге Laravel недоступен, поэтому витрина работает
+  // на локальном демо-каталоге. В dev-режиме адаптер не подключается.
+  ...(isDemoMode ? { adapter: demoAdapter } : {}),
 })
 
 http.interceptors.request.use((config) => {

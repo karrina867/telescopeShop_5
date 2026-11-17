@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import http from '@/api/http'
+import AdSlot from '@/components/AdSlot.vue'
 import ProductCard from '@/components/ProductCard.vue'
 
 const products = ref([])
@@ -237,6 +238,11 @@ onMounted(loadProducts)
 
       <div v-else class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <ProductCard v-for="product in products" :key="product.id" :product="product" />
+      </div>
+
+      <!-- Рекламный плейсхолдер: баннер между блоками главной страницы -->
+      <div class="mt-12">
+        <AdSlot size="banner" />
       </div>
     </section>
 
