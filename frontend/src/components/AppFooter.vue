@@ -7,7 +7,7 @@
             <span
               class="flex h-9 w-9 items-center justify-center rounded-full border border-brand/30 bg-brand/10 text-brand transition-colors group-hover:border-brand dark:border-white/30 dark:bg-white/90"
             >
-              <img src="/favicon.png?v=2" alt="" class="h-5 w-5 object-contain" aria-hidden="true" />
+              <img src="/logo.png" alt="" class="h-8 w-8 object-contain" aria-hidden="true" />
             </span>
             <span class="text-xl font-bold tracking-tight text-white">Орбита</span>
           </router-link>

@@ -55,7 +55,7 @@ watch(
     >
       <div class="flex h-14 items-center gap-2 border-b border-white/10 px-4">
         <span class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-brand/10 text-brand dark:bg-white/90">
-          <img src="/favicon.png?v=2" alt="" class="h-4 w-4 object-contain" aria-hidden="true" />
+          <img src="/logo.png" alt="" class="h-4 w-4 object-contain" aria-hidden="true" />
         </span>
         <span class="truncate text-sm font-bold text-white">Orbit Admin</span>
         <button
