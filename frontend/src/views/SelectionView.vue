@@ -212,7 +212,7 @@ onMounted(async () => {
 
       <article v-if="result" class="mt-6 overflow-hidden rounded-panel border border-white/10 bg-space-800/65 backdrop-blur-md">
         <div class="grid gap-0 sm:grid-cols-2">
-          <div class="flex items-center justify-center bg-space-850 p-6">
+          <div class="flex items-center justify-center bg-[#0b1124] p-6">
             <img
               :src="productImage(result.id)"
               :alt="result.name"

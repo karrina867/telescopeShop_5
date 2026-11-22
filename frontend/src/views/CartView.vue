@@ -219,7 +219,7 @@ function placeOrder() {
               class="flex flex-col gap-4 py-4 first:pt-0 last:pb-0 sm:flex-row sm:items-center"
             >
               <div class="flex min-w-0 flex-1 items-center gap-4">
-                <div class="flex h-20 w-20 shrink-0 items-center justify-center rounded-card bg-space-850 p-2">
+                <div class="flex h-20 w-20 shrink-0 items-center justify-center rounded-card bg-[#0b1124] p-2">
                   <img
                     :src="productImage(item.id)"
                     :alt="item.name"

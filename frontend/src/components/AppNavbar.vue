@@ -72,9 +72,9 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick))
     <div class="mx-auto flex h-20 max-w-page items-center justify-between px-4 sm:px-6 lg:px-12">
       <router-link :to="{ name: 'home' }" class="group flex items-center gap-2.5">
         <span
-          class="flex h-9 w-9 items-center justify-center rounded-full border border-brand/30 bg-brand/10 text-brand transition-colors group-hover:border-brand"
+          class="flex h-9 w-9 items-center justify-center rounded-full border border-brand/30 bg-brand/10 text-brand transition-colors group-hover:border-brand dark:border-white/30 dark:bg-white/90"
         >
-          <i class="fa-solid fa-satellite -rotate-45 text-sm transition-transform duration-300 group-hover:rotate-0"></i>
+          <img src="/favicon.png?v=2" alt="" class="h-5 w-5 object-contain" aria-hidden="true" />
         </span>
         <span class="text-xl font-bold tracking-tight text-white transition-colors group-hover:text-brand">
           Орбита

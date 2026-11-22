@@ -120,7 +120,7 @@ onMounted(loadProducts)
   <div>
     <!-- Hero -->
     <section
-      class="stars-bg relative overflow-hidden bg-[linear-gradient(to_right,rgba(3,7,18,0.95),rgba(3,7,18,0.7),transparent),url('/img/back.png')] bg-cover bg-center bg-no-repeat pb-16 pt-12 light:bg-[linear-gradient(to_right,rgba(248,250,252,0.96),rgba(248,250,252,0.82),rgba(248,250,252,0.35)),url('/img/back.png')] md:pb-24 md:pt-20"
+      class="stars-bg relative overflow-hidden bg-[linear-gradient(to_right,rgba(3,7,18,0.95),rgba(3,7,18,0.7),transparent),url('/img/back.png')] bg-cover bg-center bg-no-repeat pb-16 pt-12 md:pb-24 md:pt-20 light:[--color-white:#ffffff] light:[--color-gray-100:#f1f5f9] light:[--color-gray-200:#e2e8f0] light:[--color-gray-300:#cbd5e1] light:[--color-gray-400:#94a3b8] light:[--color-gray-500:#64748b] light:[--color-brand:#5ce1e6] light:[--color-brand-hover:#38bdf8] light:[--color-brand-dark:#0284c7]"
     >
       <div
         class="pointer-events-none absolute -left-24 top-0 h-72 w-72 rounded-full bg-brand/20 blur-3xl motion-safe:animate-float-slow"
@@ -269,7 +269,7 @@ onMounted(loadProducts)
               class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-75 transition-all duration-700 group-hover:scale-110 group-hover:opacity-40"
             />
             <div
-              class="pointer-events-none absolute inset-0 bg-gradient-to-t from-space-950 via-space-950/60 to-transparent"
+              class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/60 to-transparent"
             ></div>
 
             <span class="relative z-10 text-sm font-extrabold tracking-widest text-brand">{{ item.number }}</span>
@@ -390,7 +390,7 @@ onMounted(loadProducts)
 
     <!-- Cosmic banner -->
     <section
-      class="relative overflow-hidden border-y border-white/5 bg-[linear-gradient(to_right,rgba(3,7,18,0.92),rgba(3,7,18,0.6)),url('/img/back_12.png')] bg-cover bg-center py-24 light:bg-[linear-gradient(to_right,rgba(248,250,252,0.94),rgba(248,250,252,0.72)),url('/img/back_12.png')]"
+      class="relative overflow-hidden border-y border-white/5 bg-[linear-gradient(to_right,rgba(3,7,18,0.92),rgba(3,7,18,0.6)),url('/img/back_12.png')] bg-cover bg-center py-24 light:[--color-white:#ffffff] light:[--color-gray-100:#f1f5f9] light:[--color-gray-200:#e2e8f0] light:[--color-gray-300:#cbd5e1] light:[--color-gray-400:#94a3b8] light:[--color-gray-500:#64748b] light:[--color-brand:#5ce1e6] light:[--color-brand-hover:#38bdf8] light:[--color-brand-dark:#0284c7]"
     >
       <div class="relative z-10 mx-auto max-w-page px-4 sm:px-6 lg:px-12">
         <div class="max-w-2xl space-y-4">
@@ -542,7 +542,7 @@ onMounted(loadProducts)
 
     <!-- Bottom CTA -->
     <section
-      class="stars-bg relative overflow-hidden border-t border-white/5 bg-[linear-gradient(to_right,rgba(3,7,18,0.95),rgba(3,7,18,0.7),transparent),url('/img/back_13.png')] bg-cover bg-center bg-no-repeat py-24 light:bg-[linear-gradient(to_right,rgba(248,250,252,0.96),rgba(248,250,252,0.82),rgba(248,250,252,0.35)),url('/img/back_13.png')]"
+      class="stars-bg relative overflow-hidden border-t border-white/5 bg-[linear-gradient(to_right,rgba(3,7,18,0.95),rgba(3,7,18,0.7),transparent),url('/img/back_13.png')] bg-cover bg-center bg-no-repeat py-24 light:[--color-white:#ffffff] light:[--color-gray-100:#f1f5f9] light:[--color-gray-200:#e2e8f0] light:[--color-gray-300:#cbd5e1] light:[--color-gray-400:#94a3b8] light:[--color-gray-500:#64748b] light:[--color-brand:#5ce1e6] light:[--color-brand-hover:#38bdf8] light:[--color-brand-dark:#0284c7]"
     >
       <div
         class="relative z-10 mx-auto flex max-w-page flex-col items-center justify-between gap-8 px-4 text-center sm:px-6 lg:flex-row lg:px-12 lg:text-left"

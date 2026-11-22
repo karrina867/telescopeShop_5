@@ -40,7 +40,7 @@ function addToCart() {
   >
     <div>
       <div
-        class="relative mb-5 flex h-56 items-center justify-center overflow-hidden rounded-card bg-space-850 p-4"
+        class="relative mb-5 flex h-56 items-center justify-center overflow-hidden rounded-card bg-[#0b1124] p-4"
       >
         <span
           v-if="inStock"

@@ -80,11 +80,11 @@
 html.light {
   color-scheme: light;
 
-  --color-space-950: #f8fafc;
-  --color-space-900: #f1f5f9;
-  --color-space-850: #e2e8f0;
+  --color-space-950: #d1e7f0;
+  --color-space-900: #deeff6;
+  --color-space-850: #eaf4f9;
   --color-space-800: #ffffff;
-  --color-space-700: #cbd5e1;
+  --color-space-700: #b8d4e3;
 
   --color-white: #0f172a;
   --color-gray-100: #0f172a;
