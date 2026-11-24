@@ -1,16 +1,10 @@
 @import 'tailwindcss';
 @import './styles/components.css';
 
-/* Тема переключается классом .dark / .light на <html>. */
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant light (&:where(.light, .light *));
 
-/* ------------------------------------------------------------------
-   Дизайн-система проекта.
-   Все цвета, шрифты, радиусы, тени, контейнер и вертикальные отступы
-   описаны токенами Tailwind (@theme). В разметке используются только
-   готовые утилиты: bg-space-950, text-brand, rounded-panel и т.д.
-------------------------------------------------------------------- */
+
 @theme {
   --color-space-950: #030712;
   --color-space-900: #070b19;
@@ -22,7 +16,6 @@
   --color-brand-hover: #38bdf8;
   --color-brand-dark: #0284c7;
 
-  /* Семантические цвета дизайн-системы (задание 4.4). */
   --color-success: #34d399;
   --color-warning: #fbbf24;
   --color-danger: #f87171;
@@ -75,8 +68,7 @@
   }
 }
 
-/* Светлая тема: те же утилиты, но токены меняют значения.
-   Это позволяет не дублировать dark:-классы в каждом компоненте. */
+
 html.light {
   color-scheme: light;
 
@@ -121,11 +113,6 @@ html.dark {
   color-scheme: dark;
 }
 
-
-/* Символ валюты — буква «A» из кастомного шрифта Untitled1.
-   Файл весит 1,5 КБ, поэтому шрифт продублирован data-URI: символ
-   не зависит от кэша и сетевых ошибок, а font-display: block не
-   показывает запасную букву «A», пока шрифт не загружен. */
 @font-face {
   font-family: 'Untitled1';
   src:
@@ -170,7 +157,6 @@ html.dark {
     background: var(--color-brand);
   }
 
-  /* Уважаем системную настройку «меньше движения». */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -183,7 +169,6 @@ html.dark {
   }
 }
 
-/* Звёздное небо — декоративный фон, который не выражается стандартными утилитами. */
 @utility stars-bg {
   background-image:
     radial-gradient(1.5px 1.5px at 20px 30px, rgb(255 255 255 / 0.8), rgb(0 0 0 / 0)),

@@ -5,13 +5,39 @@ const PRODUCT_IMAGES = [
   '/img/teleskop_4.png',
 ]
 
+const API_BASE = import.meta.env.VITE_API_URL || '/api/v1'
+
+function backendOrigin() {
+  try {
+    return new URL(API_BASE, window.location.origin).origin
+  } catch (error) {
+    return window.location.origin
+  }
+}
+
 export function formatAmount(value) {
   const num = Number(value || 0)
 
   return num.toLocaleString('ru-RU')
 }
 
-export function productImage(id) {
+export function productImage(productOrId) {
+  const product = typeof productOrId === 'object' && productOrId !== null ? productOrId : null
+  const id = product ? product.id : productOrId
+  const image = product?.image_url || product?.image
+
+  if (typeof image === 'string' && image) {
+    if (/^(https?:|data:|blob:)/i.test(image)) {
+      return image
+    }
+
+    if (image.startsWith('/')) {
+      return `${backendOrigin()}${image}`
+    }
+
+    return `${backendOrigin()}/${image}`
+  }
+
   const index = ((Number(id) || 1) - 1) % PRODUCT_IMAGES.length
 
   return PRODUCT_IMAGES[index]

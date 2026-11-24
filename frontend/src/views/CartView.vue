@@ -119,7 +119,7 @@ function placeOrder() {
 
 <template>
   <div class="page-shell">
-    <!-- Заказ оформлен -->
+    
     <section v-if="placed" class="mx-auto max-w-3xl" aria-labelledby="order-title">
       <div class="rounded-panel border border-emerald-400/30 bg-emerald-500/10 p-6 text-center sm:p-10">
         <span class="mx-auto grid h-14 w-14 place-items-center rounded-full bg-emerald-500/20 text-2xl text-emerald-400">
@@ -191,7 +191,6 @@ function placeOrder() {
         </p>
       </header>
 
-      <!-- Пустая корзина -->
       <div v-if="cart.isEmpty" class="panel mx-auto max-w-xl py-14 text-center">
         <span class="mx-auto grid h-16 w-16 place-items-center rounded-full border border-brand/20 bg-brand/10 text-2xl text-brand">
           <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
@@ -221,7 +220,7 @@ function placeOrder() {
               <div class="flex min-w-0 flex-1 items-center gap-4">
                 <div class="flex h-20 w-20 shrink-0 items-center justify-center rounded-card bg-[#0b1124] p-2">
                   <img
-                    :src="productImage(item.id)"
+                    :src="productImage(item)"
                     :alt="item.name"
                     class="h-full w-full object-contain"
                     loading="lazy"

@@ -25,7 +25,6 @@ function setTheme(value) {
   try {
     localStorage.setItem(STORAGE_KEY, theme.value)
   } catch (error) {
-    /* localStorage может быть недоступен — тема всё равно применится. */
   }
 }
 

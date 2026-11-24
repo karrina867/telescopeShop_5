@@ -214,7 +214,7 @@ onMounted(async () => {
         <div class="grid gap-0 sm:grid-cols-2">
           <div class="flex items-center justify-center bg-[#0b1124] p-6">
             <img
-              :src="productImage(result.id)"
+              :src="productImage(result)"
               :alt="result.name"
               class="h-56 w-full max-w-xs object-contain"
             />

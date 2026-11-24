@@ -10,7 +10,7 @@ const props = defineProps({
 
 const cart = useCartStore()
 
-const image = computed(() => productImage(props.product.id))
+const image = computed(() => productImage(props.product))
 const stock = computed(() => Math.max(0, Number(props.product.stock) || 0))
 const inStock = computed(() => stock.value > 0)
 const inCart = computed(() => cart.quantityOf(props.product.id))

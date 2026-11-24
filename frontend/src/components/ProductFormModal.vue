@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { onUnmounted, reactive, ref } from 'vue'
 import http from '@/api/http'
 
 const props = defineProps({
@@ -25,6 +25,10 @@ const form = reactive({
 const errors = ref({})
 const message = ref('')
 const saving = ref(false)
+const imageFile = ref(null)
+const imagePreview = ref(props.product?.image_url || props.product?.image || '')
+const removeImage = ref(false)
+const fileInput = ref(null)
 
 const inputClass =
   'w-full rounded-xl border border-white/15 bg-space-950/80 px-4 py-2.5 text-sm text-white placeholder-gray-500 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20'
@@ -33,27 +37,60 @@ function normalize(value) {
   return value === '' ? null : value
 }
 
+function revokePreview() {
+  if (imagePreview.value && imagePreview.value.startsWith('blob:')) {
+    URL.revokeObjectURL(imagePreview.value)
+  }
+}
+
+function handleImageChange(event) {
+  const file = event.target.files?.[0]
+  if (!file) return
+
+  revokePreview()
+  imageFile.value = file
+  imagePreview.value = URL.createObjectURL(file)
+  removeImage.value = false
+  errors.value.image = undefined
+}
+
+function clearImage() {
+  revokePreview()
+  imageFile.value = null
+  imagePreview.value = ''
+  removeImage.value = Boolean(props.product?.image_url || props.product?.image)
+  if (fileInput.value) fileInput.value.value = ''
+}
+
 async function submit() {
   saving.value = true
   errors.value = {}
   message.value = ''
 
-  const payload = {
-    name: form.name,
-    category_id: normalize(form.category_id),
-    type: normalize(form.type),
-    aperture_mm: normalize(form.aperture_mm),
-    focal_mm: normalize(form.focal_mm),
-    mount: normalize(form.mount),
-    max_magnification: normalize(form.max_magnification),
-    price: form.price,
-    stock: form.stock,
-    description: normalize(form.description),
+  const payload = new FormData()
+  payload.append('name', form.name)
+  payload.append('category_id', normalize(form.category_id) ?? '')
+  payload.append('type', normalize(form.type) ?? '')
+  payload.append('aperture_mm', normalize(form.aperture_mm) ?? '')
+  payload.append('focal_mm', normalize(form.focal_mm) ?? '')
+  payload.append('mount', normalize(form.mount) ?? '')
+  payload.append('max_magnification', normalize(form.max_magnification) ?? '')
+  payload.append('price', form.price ?? '')
+  payload.append('stock', form.stock ?? 0)
+  payload.append('description', normalize(form.description) ?? '')
+
+  if (imageFile.value) {
+    payload.append('image', imageFile.value)
+  }
+
+  if (removeImage.value) {
+    payload.append('remove_image', '1')
   }
 
   try {
     if (props.product) {
-      await http.put(`/products/${props.product.id}`, payload)
+      payload.append('_method', 'PUT')
+      await http.post(`/products/${props.product.id}`, payload)
     } else {
       await http.post('/products', payload)
     }
@@ -62,6 +99,7 @@ async function submit() {
   } catch (error) {
     if (error.response?.status === 422) {
       errors.value = error.response.data.errors || {}
+      message.value = error.response.data.message || 'Проверьте поля формы.'
     } else {
       message.value = 'Не удалось сохранить товар.'
     }
@@ -69,6 +107,8 @@ async function submit() {
     saving.value = false
   }
 }
+
+onUnmounted(revokePreview)
 </script>
 
 <template>
@@ -187,6 +227,41 @@ async function submit() {
             <div>
               <label for="product-description" class="mb-1.5 block text-xs font-medium text-gray-400">Описание</label>
               <textarea id="product-description" v-model="form.description" rows="3" :class="inputClass"></textarea>
+            </div>
+
+            <div>
+              <label for="product-image" class="mb-1.5 block text-xs font-medium text-gray-400">Фото товара</label>
+              <div class="flex flex-col gap-4 rounded-xl border border-white/10 bg-space-950/40 p-4 sm:flex-row sm:items-center">
+                <div class="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-[#0b1124]">
+                  <img
+                    v-if="imagePreview"
+                    :src="imagePreview"
+                    alt="Предпросмотр фото товара"
+                    class="h-full w-full object-contain"
+                  />
+                  <span v-else class="text-xs text-gray-500">Нет фото</span>
+                </div>
+                <div class="min-w-0 flex-1">
+                  <input
+                    id="product-image"
+                    ref="fileInput"
+                    type="file"
+                    accept="image/png,image/jpeg,image/webp"
+                    class="block w-full text-sm text-gray-300 file:mr-3 file:rounded-lg file:border-0 file:bg-brand/15 file:px-3 file:py-2 file:text-xs file:font-semibold file:text-brand hover:file:bg-brand/25"
+                    @change="handleImageChange"
+                  />
+                  <p class="mt-2 text-xs text-gray-500">JPG, PNG или WebP, до 5 МБ. В демо-режиме фото сохраняется локально в браузере.</p>
+                  <button
+                    v-if="imagePreview"
+                    type="button"
+                    class="mt-2 text-xs text-red-300 transition-colors hover:text-red-200"
+                    @click="clearImage"
+                  >
+                    Убрать фото
+                  </button>
+                  <p v-if="errors.image" class="mt-2 text-xs text-red-400">{{ errors.image[0] }}</p>
+                </div>
+              </div>
             </div>
 
             <div class="flex items-center justify-end gap-3 border-t border-white/10 pt-4">

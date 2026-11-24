@@ -26,6 +26,8 @@ function normalizeItem(raw) {
   const quantityRaw = Math.floor(Number(raw?.quantity))
   const quantity = Number.isFinite(quantityRaw) && quantityRaw > 0 ? quantityRaw : 1
 
+  const image = raw?.image_url || raw?.image || null
+
   return {
     id,
     name: String(raw?.name || 'Телескоп').slice(0, 160),
@@ -36,6 +38,7 @@ function normalizeItem(raw) {
     aperture_mm: Number(raw?.aperture_mm) || null,
     focal_mm: Number(raw?.focal_mm) || null,
     mount: raw?.mount ? String(raw.mount) : '',
+    image: typeof image === 'string' && image ? image : null,
   }
 }
 

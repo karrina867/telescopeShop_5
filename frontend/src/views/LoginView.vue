@@ -25,7 +25,8 @@ async function submit() {
 
   try {
     await auth.login(form)
-    router.push(route.query.redirect || { name: 'home' })
+    const fallback = auth.isAdmin ? { name: 'admin' } : { name: 'home' }
+    router.push(route.query.redirect || fallback)
   } catch (error) {
     if (error.response?.status === 422) {
       errors.value = error.response.data.errors || { email: [error.response.data.message] }
@@ -51,8 +52,9 @@ async function submit() {
           v-if="isDemoMode"
           class="mb-5 rounded-xl border border-brand/30 bg-brand/10 px-4 py-3 text-sm text-brand"
         >
-          Демо-публикация: каталог и корзина работают на демо-данных, а вход в админ-панель
-          доступен только в локальной версии с Laravel.
+          Демо-публикация: войдите как администратор (<strong>admin@orbita.by</strong> /
+          <strong>admin12345</strong>), чтобы открыть панель управления. Изменения сохраняются
+          локально в браузере.
         </div>
 
         <div
